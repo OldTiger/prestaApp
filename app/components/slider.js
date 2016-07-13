@@ -1,39 +1,58 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
     View
 } from 'react-native';
-import Carousel from 'react-native-carousel';
+import * as API from '../api';
+import Swiper from 'react-native-swiper';
 
-let RNCarousel = React.createClass({
-    render: function() {
+const SLIDERS_HEIGHT = 150;
+let Sliders = React.createClass({
+    render: function () {
         return (
-            <Carousel width={375}>
-                <View style={styles.container}>
-                    <Text>Page 1</Text>
+            <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} height={SLIDERS_HEIGHT}>
+                <View style={styles.slide1}>
+                    <Text style={styles.text}>Hello Swiper</Text>
                 </View>
-                <View style={styles.container}>
-                    <Text>Page 2</Text>
+                <View style={styles.slide2}>
+                    <Text style={styles.text}>Beautiful</Text>
                 </View>
-                <View style={styles.container}>
-                    <Text>Page 3</Text>
+                <View style={styles.slide3}>
+                    <Text style={styles.text}>And simple</Text>
                 </View>
-            </Carousel>
+            </Swiper>
         );
     }
 });
 
 let styles = StyleSheet.create({
-    container: {
-        width: 375,
+    wrapper: {},
+    slide1: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: '#9DD6EB',
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5',
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9',
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold',
     }
 });
 
 export {
-    RNCarousel as Slider
-}
+     Sliders
+};

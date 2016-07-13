@@ -1,6 +1,11 @@
 import {Buffer} from 'buffer';
 import {DOMParser} from 'xmldom';
+
 let API = null;
+const REST_TAG = {
+
+}
+
 try {
     fetch('http://localhost:8888/prestashop/api', {
         method: 'GET',
@@ -19,4 +24,7 @@ export function getResources(name) {
     let tag = API.getElementsByTagName(name)[0];
     if (tag)
         return tag.getAttribute('xlink:href');
+}
+function getHomePageSlidersImageUrl(){
+
 }

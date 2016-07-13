@@ -4,35 +4,37 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
     View
 } from 'react-native';
 import * as API from './api';
-import {Slider} from  './components/slider';
+import {Sliders} from  './components/slider';
 
 export default class prestaApp extends Component {
-    componentDidMount(){
+    componentDidMount() {
 
     }
-    componentWillUnMount(){
+
+    componentWillUnMount() {
 
     }
+
     render() {
         return (
-            <Slider></Slider>
+            <View>
+                <Sliders></Sliders>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        flexDirection: 'row',
+        height: 150
     },
     welcome: {
         fontSize: 20,
