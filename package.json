@@ -9,7 +9,6 @@
     "buffer": "^4.7.0",
     "react": "15.2.0",
     "react-native": "0.28.0",
-    "react-native-carousel": "^0.8.0",
     "react-native-swiper": "^1.4.6",
     "xmldom": "^0.1.22"
   },
