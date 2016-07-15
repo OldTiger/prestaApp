@@ -2,57 +2,72 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    TouchableHighlight,
+    Navigator
 } from 'react-native';
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar'
 import * as API from '../api';
 import Swiper from 'react-native-swiper';
 
 const SLIDERS_HEIGHT = 150;
-let Sliders = React.createClass({
-    render: function () {
+class Sliders extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            imageUrls: [
+                'http://localhost:8888/prestashop/modules/homeslider/images/sample-1.jpg',
+                'http://localhost:8888/prestashop/modules/homeslider/images/sample-2.jpg',
+                'http://localhost:8888/prestashop/modules/homeslider/images/sample-3.jpg'
+            ]
+        };
+    }
+
+    componentDidMount() {
+        API.getHomePageSlidersHrefs().then(function (val) {
+        });
+    }
+
+    onPressSlide() {
+        alert('press');
+    }
+
+    render() {
+        let rows = [];
+        this.state.imageUrls.forEach(function (imageUrl, index) {
+            rows.push(
+                <TouchableHighlight onPress={this.onPressSlide}
+                                    activeOpacity={0.6}
+                                    underlayColor={'white'}
+                                    key={index} style={styles.touch}>
+                    <Image source={{ uri:imageUrl}}
+                           indicator={ProgressBar}
+                           style={styles.slide}
+                    />
+                </TouchableHighlight>
+            );
+        }.bind(this));
         return (
             <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} height={SLIDERS_HEIGHT}>
-                <View style={styles.slide1}>
-                    <Text style={styles.text}>Hello Swiper</Text>
-                </View>
-                <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
-                </View>
-                <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
-                </View>
+                {rows}
             </Swiper>
         );
     }
-});
-
+}
 let styles = StyleSheet.create({
     wrapper: {},
-    slide1: {
+    slide: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#9DD6EB',
+        backgroundColor: '#9DD6EB'
     },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5',
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold',
+    touch:{
+        flex:1
     }
 });
 
 export {
-     Sliders
+    Sliders
 };
