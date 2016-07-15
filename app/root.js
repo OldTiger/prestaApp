@@ -11,7 +11,7 @@ import {
     View
 } from 'react-native';
 import * as API from './api';
-import {Sliders} from  './components/slider';
+import Home from  './containers/home';
 
 export default class prestaApp extends Component {
     componentDidMount() {
@@ -24,27 +24,9 @@ export default class prestaApp extends Component {
 
     render() {
         return (
-            <View>
-                <Sliders></Sliders>
-            </View>
+           <Home/>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        height: 150
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    }
-});
 

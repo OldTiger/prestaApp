@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'
-import * as API from '../api';
+import * as API from '../../api';
 import Swiper from 'react-native-swiper';
 
 const SLIDERS_HEIGHT = 150;
