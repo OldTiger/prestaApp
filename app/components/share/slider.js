@@ -3,15 +3,14 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableHighlight,
-    Navigator
+    TouchableHighlight
 } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'
-import * as API from '../../api';
 import Swiper from 'react-native-swiper';
 
-const SLIDERS_HEIGHT = 150;
+const SLIDERS_HEIGHT = 180;
+
 class Sliders extends Component {
     constructor(props) {
         super(props);
@@ -24,20 +23,19 @@ class Sliders extends Component {
         };
     }
 
-    componentDidMount() {
-        API.getHomePageSlidersHrefs().then(function (val) {
+    onPressSlide(index) {
+        this.props.navigator.push({
+            component: 'WebView',
+            title: '',
+            href: this.state.imageUrls[index]
         });
-    }
-
-    onPressSlide() {
-        alert('press');
     }
 
     render() {
         let rows = [];
         this.state.imageUrls.forEach(function (imageUrl, index) {
             rows.push(
-                <TouchableHighlight onPress={this.onPressSlide}
+                <TouchableHighlight onPress={this.onPressSlide.bind(this,index)}
                                     activeOpacity={0.6}
                                     underlayColor={'white'}
                                     key={index} style={styles.touch}>
@@ -63,8 +61,8 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#9DD6EB'
     },
-    touch:{
-        flex:1
+    touch: {
+        flex: 1
     }
 });
 

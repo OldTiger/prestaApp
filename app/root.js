@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
 } from 'react-native';
 import * as API from './api';
 import Home from  './containers/home';
@@ -24,7 +24,7 @@ export default class prestaApp extends Component {
 
     render() {
         return (
-           <Home/>
+            <Home/>
         );
     }
 }
