@@ -26,7 +26,7 @@ let NavigationBarRouteMapper = {
                 </TouchableHighlight>)
         }
         else if (index == 0) {
-            return <ScanBtn/>;
+            return <ScanBtn navigator={navigator}/>;
         }
     },
     Title(route, navigator, index, navState) {
@@ -55,10 +55,6 @@ export default class Home extends Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
     hideNavBar() {
         if (this.state.navBarHide) {
             return null;
@@ -67,24 +63,10 @@ export default class Home extends Component {
         }
     }
 
-    componentWillUnMount() {
-
-    }
-
     renderScene(route, navigator) {
-        if (route.component == 'HomeIndex') {
-            return <HomeIndex navigator={navigator}/>
-        } else if (route.component == 'WebView') {
-            return (
-                <View style={{flex:1}}>
-                    <StatusBar
-                        barStyle="default"
-                    />
-                    <WebView
-                        source={{uri: 'http://localhost:8888/prestashop/zh/'}}
-                        style={styles.webView}
-                    />
-                </View>);
+        if (route.component) {
+            const Com = route.component;
+            return <Com navigator={navigator} route={route} {...this.props} />
         }
     }
 
@@ -92,7 +74,7 @@ export default class Home extends Component {
         return (
             <Navigator
                 style={{ flex:1 }}
-                initialRoute={{ component: 'HomeIndex',title:'Home' }}
+                initialRoute={{ component: HomeIndex,title:'Home' }}
                 renderScene={ this.renderScene }
                 navigationBar={<Navigator.NavigationBar routeMapper={ NavigationBarRouteMapper } style={styles.navigationBar} />}
             />
@@ -121,6 +103,5 @@ const styles = StyleSheet.create({
         fontSize: 17,
         marginVertical: 10
     }
-
 });
 

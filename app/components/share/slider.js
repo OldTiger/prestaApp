@@ -8,7 +8,7 @@ import {
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'
 import Swiper from 'react-native-swiper';
-
+import Browser from './browser';
 const SLIDERS_HEIGHT = 180;
 
 class Sliders extends Component {
@@ -25,7 +25,7 @@ class Sliders extends Component {
 
     onPressSlide(index) {
         this.props.navigator.push({
-            component: 'WebView',
+            component: Browser,
             title: '',
             href: this.state.imageUrls[index]
         });
