@@ -5,50 +5,47 @@ import {
     StyleSheet,
     Text,
     TouchableHighlight,
-    View
+    View,
+    Platform
 } from 'react-native';
-import Camera from 'react-native-camera';
+import BarcodeScanner from 'react-native-barcode-scanner-universal';
 
 export default class QRCamera extends Component {
     render() {
-        return (
-            <View style={styles.container}>
-                <Camera
-                    ref={(cam) => {
-                        this.camera = cam;
-                    }}
-                    style={styles.preview}
-                    aspect={Camera.constants.Aspect.fill}>
-                    <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-                </Camera>
-            </View>
-        );
-    }
+        let scanArea = null
+        if (Platform.OS === 'ios') {
+            scanArea = (
+                <View style={styles.rectangleContainer}>
+                    <View style={styles.rectangle} />
+                </View>
+            )
+        }
 
-    takePicture() {
-        this.camera.capture()
-            .then((data) => console.log(data))
-            .catch(err => console.error(err));
+        return (
+            <BarcodeScanner
+                onBarCodeRead={(code) => console.log(code)}
+                style={styles.camera}>
+                {scanArea}
+            </BarcodeScanner>
+        )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    camera: {
         flex: 1
     },
-    preview: {
+    rectangleContainer: {
         flex: 1,
-        justifyContent: 'flex-end',
         alignItems: 'center',
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
     },
-    capture: {
-        flex: 0,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        color: '#000',
-        padding: 10,
-        margin: 40
+    rectangle: {
+        height: 250,
+        width: 250,
+        borderWidth: 2,
+        borderColor: '#00FF00',
+        backgroundColor: 'transparent'
     }
-});
+})
