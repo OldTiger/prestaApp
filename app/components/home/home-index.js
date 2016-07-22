@@ -2,20 +2,25 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
-    View,
-    StatusBar
+    ScrollView,
+    StatusBar,
 } from 'react-native';
 import * as API from '../../api';
 import {Sliders} from  '../../components/share/slider';
+import CategoriesBar from './categories-bar';
+import HomeProducts from './home-products'
+
 export default class HomeIndex extends Component {
     render() {
         return (
-            <View>
+            <ScrollView>
                 <StatusBar
                     barStyle="light-content"
                 />
                 <Sliders navigator={this.props.navigator}/>
-            </View>
+                <CategoriesBar navigator={this.props.navigator}/>
+                <HomeProducts/>
+            </ScrollView>
         );
     }
 }
