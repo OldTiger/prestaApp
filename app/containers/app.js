@@ -13,11 +13,12 @@ import {
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
-import * as API from '../api';
-import Home from  './home';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import TabNavigator from 'react-native-tab-navigator';
-import * as actions from '../actions/actions'
+
+import Home from  './home';
+import * as actions from '../actions/actions';
+
 class prestaApp extends Component {
     constructor(props) {
         super(props);
@@ -25,39 +26,27 @@ class prestaApp extends Component {
     }
 
     render() {
-        this.props.GOTO_HOME();
         return (
             <TabNavigator
                 tabBarStyle={styles.tab}>
                 <TabNavigator.Item
                     selected={this.state.selectedTab === 'home'}
-                    title="Home"
                     titleStyle={styles.tabTitle}
-                    renderIcon={() => <Image style={styles.tabIcon}
-                                             source={{uri: 'https://maxcdn.icons8.com/Share/icon/Messaging//star1600.png'}}/>}
-                    renderSelectedIcon={() => <Image style={styles.tabIcon}
-                                                     source={{uri: 'https://maxcdn.icons8.com/Share/icon/Messaging//star1600.png'}}/>}
+                    renderIcon={() => <Ionicons name="ios-home-outline" size={30} color="#4F8EF7" />}
+                    renderSelectedIcon={() => <Ionicons name="ios-home-outline" size={30} color="#4F8EF7"/>}
                     onPress={() => this.setState({selectedTab: 'home'})}>
                     <Home/>
                 </TabNavigator.Item>
-                <TabNavigator.Item
-                    selected={this.state.selectedTab === 'tab2'}
-                    title="tab2"
-                    titleStyle={styles.tabTitle}
-                    renderIcon={() => <Image style={styles.tabIcon}
-                                             source={{uri: 'https://maxcdn.icons8.com/Share/icon/Messaging//star1600.png'}}/>}
-                    renderSelectedIcon={() => <Image style={styles.tabIcon}
-                                                     source={{uri: 'https://maxcdn.icons8.com/Share/icon/Messaging//star1600.png'}}/>}
-                    onPress={() => this.setState({selectedTab: 'tab2'})}>
-                    <Text>123</Text>
-                </TabNavigator.Item>
+
             </TabNavigator>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    tab: {},
+    tab: {
+        height:20
+    },
     tabIcon: {
         width: 30,
         height: 30,
