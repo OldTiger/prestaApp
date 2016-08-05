@@ -18,6 +18,12 @@ import TabNavigator from 'react-native-tab-navigator';
 
 import Home from  './home';
 import * as actions from '../actions/actions';
+import * as CONSTANTS from '../constants';
+
+const TAB_1_ICON = 'ios-home-outline';
+const TAB_2_ICON = 'ios-list-box-outline';
+const TAB_3_ICON = 'ios-cart-outline';
+const TAB_4_ICON = 'ios-person-outline';
 
 class prestaApp extends Component {
     constructor(props) {
@@ -27,17 +33,60 @@ class prestaApp extends Component {
 
     render() {
         return (
-            <TabNavigator
-                tabBarStyle={styles.tab}>
+            <TabNavigator tabBarStyle={{height: CONSTANTS.STYLES.TAB.TAB_HEIGHT, overflow: 'hidden'}}
+                          sceneStyle={{paddingBottom: CONSTANTS.STYLES.TAB.TAB_HEIGHT}}>
+                {/*fix title is empty bug use title style*/}
+                {/*tab1*/}
                 <TabNavigator.Item
+                    title="home"
+                    titleStyle={{height: 0}}
                     selected={this.state.selectedTab === 'home'}
-                    titleStyle={styles.tabTitle}
-                    renderIcon={() => <Ionicons name="ios-home-outline" size={30} color="#4F8EF7" />}
-                    renderSelectedIcon={() => <Ionicons name="ios-home-outline" size={30} color="#4F8EF7"/>}
+                    renderIcon={() => <Ionicons name={TAB_1_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                color={CONSTANTS.STYLES.TAB.COLOR}/>}
+                    renderSelectedIcon={() => <Ionicons name={TAB_1_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                        color={CONSTANTS.STYLES.TAB.SELECTED_COLOR}/>}
                     onPress={() => this.setState({selectedTab: 'home'})}>
                     <Home/>
                 </TabNavigator.Item>
-
+                {/*tab2*/}
+                <TabNavigator.Item
+                    title="categories"
+                    titleStyle={{height: 0}}
+                    selected={this.state.selectedTab === 'categories'}
+                    renderIcon={() => <Ionicons name={TAB_2_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                color={CONSTANTS.STYLES.TAB.COLOR}/>}
+                    renderSelectedIcon={() => <Ionicons name={TAB_2_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                        color={CONSTANTS.STYLES.TAB.SELECTED_COLOR}/>}
+                    onPress={() => this.setState({selectedTab: 'categories'})}>
+                    <Ionicons name={TAB_2_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                              color={CONSTANTS.STYLES.TAB.COLOR}/>
+                </TabNavigator.Item>
+                {/*tab3*/}
+                <TabNavigator.Item
+                    title="shopcart"
+                    titleStyle={{height: 0}}
+                    selected={this.state.selectedTab === 'shopcart'}
+                    renderIcon={() => <Ionicons name={TAB_3_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                color={CONSTANTS.STYLES.TAB.COLOR}/>}
+                    renderSelectedIcon={() => <Ionicons name={TAB_3_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                        color={CONSTANTS.STYLES.TAB.SELECTED_COLOR}/>}
+                    onPress={() => this.setState({selectedTab: 'shopcart'})}>
+                    <Ionicons name={TAB_3_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                              color={CONSTANTS.STYLES.TAB.COLOR}/>
+                </TabNavigator.Item>
+                {/*tab4*/}
+                <TabNavigator.Item
+                    title="person"
+                    titleStyle={{height: 0}}
+                    selected={this.state.selectedTab === 'person'}
+                    renderIcon={() => <Ionicons name={TAB_4_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                color={CONSTANTS.STYLES.TAB.COLOR}/>}
+                    renderSelectedIcon={() => <Ionicons name={TAB_4_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                                                        color={CONSTANTS.STYLES.TAB.SELECTED_COLOR}/>}
+                    onPress={() => this.setState({selectedTab: 'person'})}>
+                    <Ionicons name={TAB_4_ICON} size={CONSTANTS.STYLES.TAB.ICON_SIZE}
+                              color={CONSTANTS.STYLES.TAB.COLOR}/>
+                </TabNavigator.Item>
             </TabNavigator>
         );
     }
@@ -45,7 +94,7 @@ class prestaApp extends Component {
 
 const styles = StyleSheet.create({
     tab: {
-        height:20
+        height: 20
     },
     tabIcon: {
         width: 30,
@@ -66,7 +115,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators(actions,dispatch)
+        ...bindActionCreators(actions, dispatch)
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(prestaApp);
+export default connect(mapStateToProps, mapDispatchToProps)(prestaApp);
